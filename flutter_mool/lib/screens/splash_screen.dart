@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+        MaterialPageRoute(builder: (context) => WelcomeScreen()),
       );
     });
   }
@@ -53,22 +53,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-
-// Center(
-//               child: Container(
-//                 padding: EdgeInsets.all(20),
-//                 width: 500,
-//                 height: 500,
-//                 color: Colors.transparent,
-//                 child: Text(
-//                   'MOOL',
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                     fontSize: 48,
-//                     fontWeight: FontWeight.bold,
-//                     letterSpacing: 2,
-//                   ),
-//                 ),
-//               ),
-//             ),

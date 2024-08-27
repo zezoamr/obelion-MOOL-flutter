@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/screens/welcome_screen.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch()
             .copyWith(secondary: Colors.white), //accentColor: Colors.white,
       ),
-      home: SplashScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
