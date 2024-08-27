@@ -29,7 +29,7 @@ class WelcomeScreen extends StatelessWidget {
                         child: Stack(
                           children: [
                             Positioned(
-                              left: 50,
+                              left: 20,
                               child: ClipOval(
                                 child: Container(
                                   width: 200,
@@ -42,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              right: 50,
+                              right: 20,
                               child: ClipOval(
                                 child: Container(
                                   width: 200,
