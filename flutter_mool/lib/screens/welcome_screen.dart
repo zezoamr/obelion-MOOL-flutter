@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/screens/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -109,7 +110,7 @@ class Form extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  height: 50,
+                  height: 60,
                   width: 100,
                   child: ElevatedButton(
                     child: const Text('Sign Up'),
@@ -122,14 +123,19 @@ class Form extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         )),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignupScreen()),
+                      );
+                    },
                   ),
                 ),
               ),
               const SizedBox(width: 20),
               Expanded(
                 child: Container(
-                  height: 50,
+                  height: 60,
                   width: 100,
                   child: ElevatedButton(
                     child: const Text('Sign in'),
