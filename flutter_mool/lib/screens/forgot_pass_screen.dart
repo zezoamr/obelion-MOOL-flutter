@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/screens/confirmcode_screen.dart';
 import 'package:flutter_mool/widgets/buildTextField.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -93,7 +94,13 @@ class ForgotPassForm extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ConfirmCodeScreen()),
+              );
+            },
           ),
           Spacer(
             flex: 1,
