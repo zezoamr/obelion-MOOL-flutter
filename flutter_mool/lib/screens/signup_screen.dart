@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/screens/confirmcode_screen.dart';
 import 'package:flutter_mool/screens/signin_screen.dart';
 
 import 'package:flutter_mool/widgets/buildTextField.dart';
@@ -128,7 +129,13 @@ class SignupForm extends StatelessWidget {
               ),
               fixedSize: const Size(double.infinity, 50),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ConfirmCodeScreen()),
+              );
+            },
             child: const Text('Sign Up'),
           ),
           const SizedBox(height: 10),
@@ -137,11 +144,13 @@ class SignupForm extends StatelessWidget {
             children: [
               const Text('Already have account? '),
               TextButton(
-                child: const Text('Login', style: TextStyle(color: Colors.black)),
+                child:
+                    const Text('Login', style: TextStyle(color: Colors.black)),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SigninScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const SigninScreen()),
                   );
                 },
               ),
