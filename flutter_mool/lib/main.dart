@@ -22,7 +22,7 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch()
             .copyWith(secondary: Colors.white), //accentColor: Colors.white,
       ),
-      home: WelcomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
