@@ -101,7 +101,7 @@ class _ConfirmCodeFormState extends State<ConfirmCodeForm> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
-          //_buildCodeInputField(),
+          _buildCodeInputField(),
           const SizedBox(height: 20),
           const Text(
             'Resend code in 00:59',
@@ -123,6 +123,45 @@ class _ConfirmCodeFormState extends State<ConfirmCodeForm> {
           ),
           const Spacer(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildCodeInputField() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: List.generate(
+        4,
+        (index) => SizedBox(
+          width: 50,
+          height: 50,
+          child: TextField(
+            controller: _controllers[index],
+            focusNode: _focusNodes[index],
+            textAlign: TextAlign.center,
+            keyboardType: TextInputType.number,
+            maxLength: 1,
+            onChanged: (value) {
+              if (value.length == 1 && index < 3) {
+                _focusNodes[index + 1].requestFocus();
+              }
+            },
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(5),
+              counterText: '',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Colors.grey),
+              ),
+              filled: true,
+              fillColor: Colors.white,
+            ),
+            style: const TextStyle(fontSize: 24),
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+            ],
+          ),
+        ),
       ),
     );
   }
