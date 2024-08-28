@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/screens/signin_screen.dart';
 import 'package:flutter_mool/screens/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
                             Positioned(
                               left: 20,
                               child: ClipOval(
-                                child: Container(
+                                child: SizedBox(
                                   width: 200,
                                   height: 260,
                                   child: Image.asset(
@@ -45,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                             Positioned(
                               right: 20,
                               child: ClipOval(
-                                child: Container(
+                                child: SizedBox(
                                   width: 200,
                                   height: 260,
                                   child: Image.asset(
@@ -59,9 +62,9 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
-                      child: const Text(
+                      child: Text(
                         'Find the best Collection',
                         textAlign: TextAlign.left,
                         style: TextStyle(
@@ -109,11 +112,10 @@ class Form extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
-                child: Container(
+                child: SizedBox(
                   height: 60,
                   width: 100,
                   child: ElevatedButton(
-                    child: const Text('Sign Up'),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: Colors.black,
@@ -124,21 +126,21 @@ class Form extends StatelessWidget {
                           fontSize: 20,
                         )),
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignupScreen()),
+                        MaterialPageRoute(builder: (context) => const SignupScreen()),
                       );
                     },
+                    child: const Text('Sign Up'),
                   ),
                 ),
               ),
               const SizedBox(width: 20),
               Expanded(
-                child: Container(
+                child: SizedBox(
                   height: 60,
                   width: 100,
                   child: ElevatedButton(
-                    child: const Text('Sign in'),
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.black,
@@ -147,7 +149,13 @@ class Form extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         )),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SigninScreen()),
+                      );
+                    },
+                    child: const Text('Sign in'),
                   ),
                 ),
               ),
@@ -160,7 +168,7 @@ class Form extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     children: [
                       TextSpan(
                         text: 'Continue as ',
@@ -188,7 +196,7 @@ class Form extends StatelessWidget {
             onPressed: () {},
             child: Center(
               child: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'By continuing, you agree to ',

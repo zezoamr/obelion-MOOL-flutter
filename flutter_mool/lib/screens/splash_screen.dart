@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => WelcomeScreen()),
+        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
       );
     });
   }
@@ -26,28 +26,25 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Container(
-        // color: Colors.black,
-        child: SafeArea(
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              // Gray ellipses
-              Positioned(
-                top: 10,
-                child: SvgPicture.asset('assets/images/splash/ellipse1.svg'),
-              ),
-              Positioned(
-                top: 110,
-                right: 0,
-                child: SvgPicture.asset('assets/images/splash/ellipse2.svg'),
-              ),
-              // Logo
-              Center(
-                child: Image.asset('assets/images/splash/splashtitle.png'),
-              ),
-            ],
-          ),
+      body: SafeArea(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            // Gray ellipses
+            Positioned(
+              top: 10,
+              child: SvgPicture.asset('assets/images/splash/ellipse1.svg'),
+            ),
+            Positioned(
+              top: 110,
+              right: 0,
+              child: SvgPicture.asset('assets/images/splash/ellipse2.svg'),
+            ),
+            // Logo
+            Center(
+              child: Image.asset('assets/images/splash/splashtitle.png'),
+            ),
+          ],
         ),
       ),
     );
