@@ -47,6 +47,62 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverToBoxAdapter(child: TwoCardsGrid()),
           SliverToBoxAdapter(child: SizedBox(height: 20)),
           SliverToBoxAdapter(child: TopBrandsGrid()),
+          SliverToBoxAdapter(child: SizedBox(height: 20)),
+          SliverToBoxAdapter(
+            child: NewSection(
+              label: 'New Arrivals',
+              items: [
+                SectionItem(
+                  title: 'Red Dress',
+                  price: '2200 SAR',
+                  imageAsset: 'assets/images/home/10.png',
+                  discountPercentage: 20,
+                  originalPrice: '2500 SAR',
+                ),
+                SectionItem(
+                  title: 'Yellow dotted Dress',
+                  price: '2000 SAR',
+                  imageAsset: 'assets/images/home/10.png',
+                ),
+                SectionItem(
+                  title: 'Blue Suit',
+                  price: '1600 SAR',
+                  imageAsset: 'assets/images/home/10.png',
+                  discountPercentage: 15,
+                  originalPrice: '3500 SAR',
+                ),
+              ],
+            ),
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 20)),
+          SliverToBoxAdapter(child: DiscountBanner()),
+          SliverToBoxAdapter(child: SizedBox(height: 20)),
+          SliverToBoxAdapter(
+            child: NewSection(
+              label: 'Best Sellers',
+              items: [
+                SectionItem(
+                  title: 'Red Dress',
+                  price: '2200 SAR',
+                  imageAsset: 'assets/images/home/10.png',
+                  discountPercentage: 20,
+                  originalPrice: '2500 SAR',
+                ),
+                SectionItem(
+                  title: 'Yellow dotted Dress',
+                  price: '2000 SAR',
+                  imageAsset: 'assets/images/home/10.png',
+                ),
+                SectionItem(
+                  title: 'Blue Suit',
+                  price: '1600 SAR',
+                  imageAsset: 'assets/images/home/10.png',
+                  discountPercentage: 15,
+                  originalPrice: '3500 SAR',
+                ),
+              ],
+            ),
+          ),
           SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
       ),
@@ -223,7 +279,7 @@ class TwoCardsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 350,
       child: GridView.count(
         crossAxisCount: 2,
         childAspectRatio: 0.75,
@@ -315,6 +371,185 @@ class TopBrandsGrid extends StatelessWidget {
   }
 }
 
+class NewSection extends StatelessWidget {
+  final String label;
+  final List<SectionItem> items;
+
+  NewSection({required this.label, required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                label,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'See All >',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: const Color.fromARGB(255, 130, 130, 130),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 350,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: items.length,
+            itemBuilder: (context, index) => _buildNewItem(items[index]),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNewItem(SectionItem item) {
+    return Container(
+      width: 200,
+      margin: EdgeInsets.only(left: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    item.imageAsset,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      icon: Icon(Icons.favorite_border, color: Colors.black),
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+                if (item.discountPercentage != null)
+                  Positioned(
+                    top: 8,
+                    left: 0,
+                    child: Container(
+                      width: 50,
+                      padding: EdgeInsets.only(left: 10, top: 4, bottom: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                      ),
+                      child: Text(
+                        '${item.discountPercentage}%',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(item.title, style: TextStyle(fontSize: 16)),
+          SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if (item.originalPrice != null)
+                      Text(
+                        item.originalPrice!,
+                        style: TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                          fontSize: 12,
+                        ),
+                      ),
+                    SizedBox(width: 5),
+                    Text(item.price,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15),
+                  ),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.add, color: Colors.white),
+                  onPressed: () {},
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DiscountBanner extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      color: Colors.black,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Get up to 15% off with code : ',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Text(
+              'GET15',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class DeliveryBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -347,4 +582,20 @@ class DeliveryBanner extends StatelessWidget {
       ),
     );
   }
+}
+
+class SectionItem {
+  final String title;
+  final String price;
+  final String imageAsset;
+  final int? discountPercentage;
+  final String? originalPrice;
+
+  SectionItem({
+    required this.title,
+    required this.price,
+    required this.imageAsset,
+    this.discountPercentage,
+    this.originalPrice,
+  });
 }
