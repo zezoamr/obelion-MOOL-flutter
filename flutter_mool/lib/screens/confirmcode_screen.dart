@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:async';
 
 class ConfirmCodeScreen extends StatelessWidget {
   const ConfirmCodeScreen({Key? key}) : super(key: key);
@@ -8,6 +9,7 @@ class ConfirmCodeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 46, 46, 51),
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -57,6 +59,26 @@ class _ConfirmCodeFormState extends State<ConfirmCodeForm> {
   final List<FocusNode> _focusNodes = List.generate(4, (index) => FocusNode());
   final List<TextEditingController> _controllers =
       List.generate(4, (index) => TextEditingController());
+  late Timer _timer;
+  int _remainingTime = 59;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_remainingTime > 0) {
+        setState(() {
+          _remainingTime--;
+        });
+      } else {
+        _timer.cancel();
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -66,6 +88,7 @@ class _ConfirmCodeFormState extends State<ConfirmCodeForm> {
     for (var controller in _controllers) {
       controller.dispose();
     }
+    _timer.cancel();
     super.dispose();
   }
 
@@ -103,8 +126,8 @@ class _ConfirmCodeFormState extends State<ConfirmCodeForm> {
           const SizedBox(height: 20),
           _buildCodeInputField(),
           const SizedBox(height: 20),
-          const Text(
-            'Resend code in 00:59',
+          Text(
+            'Resend code in 00:${_remainingTime.toString().padLeft(2, '0')}',
             style: TextStyle(fontSize: 14, color: Colors.grey),
             textAlign: TextAlign.center,
           ),
