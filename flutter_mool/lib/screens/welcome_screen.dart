@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/screens/home_screen.dart';
 import 'package:flutter_mool/screens/signin_screen.dart';
 import 'package:flutter_mool/screens/signup_screen.dart';
 
@@ -128,7 +129,8 @@ class Form extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SignupScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const SignupScreen()),
                       );
                     },
                     child: const Text('Sign Up'),
@@ -152,7 +154,8 @@ class Form extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SigninScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const SigninScreen()),
                       );
                     },
                     child: const Text('Sign in'),
@@ -163,7 +166,12 @@ class Form extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            },
             child: Center(
               child: Align(
                 alignment: Alignment.centerLeft,
