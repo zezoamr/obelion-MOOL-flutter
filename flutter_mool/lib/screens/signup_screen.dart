@@ -45,9 +45,7 @@ class SignupScreen extends StatelessWidget {
                 ),
                 centerTitle: true,
               ),
-              const Spacer(
-                flex: 3,
-              ),
+              const SizedBox(height: 50),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Align(
@@ -76,7 +74,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 20),
               const SignupForm(),
             ],
           ),
