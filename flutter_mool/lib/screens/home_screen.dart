@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
+// import 'package:flutter_mool/screens/categories_screen.dart';
 import 'package:flutter_mool/widgets/custom_bottomnavbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
