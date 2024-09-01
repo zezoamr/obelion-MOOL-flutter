@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/screens/confirmcode_screen.dart';
 import 'package:flutter_mool/widgets/buildTextField.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_mool/translations/forgot-pass-screen-translations.dart';
 
 class ForgotPassScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final t = ForgotPassScreenTranslations.of(context);
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 46, 46, 51),
       appBar: AppBar(
@@ -13,7 +15,7 @@ class ForgotPassScreen extends StatelessWidget {
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
-            Navigator.pop(context); // Handle back button press
+            Navigator.pop(context);
           },
           child: Image.asset(
             'assets/images/account/arrowback.png',
@@ -37,7 +39,7 @@ class ForgotPassScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Forget',
+                    t.forget,
                     style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.bold,
@@ -45,7 +47,7 @@ class ForgotPassScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Password',
+                    t.password,
                     style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.bold,
@@ -69,6 +71,8 @@ class ForgotPassScreen extends StatelessWidget {
 class ForgotPassForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final t = ForgotPassScreenTranslations.of(context);
+
     return Container(
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 237, 237, 237),
@@ -82,10 +86,10 @@ class ForgotPassForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: 30),
-          buildTextField('Email or Mobile Number'),
+          buildTextField(t.emailOrMobile),
           Spacer(flex: 10),
           ElevatedButton(
-            child: Text('Submit'),
+            child: Text(t.submit),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black,
               foregroundColor: Colors.white,

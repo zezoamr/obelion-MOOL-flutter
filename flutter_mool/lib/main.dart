@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_mool/translations/forgot-pass-screen-translations.dart';
+
+import 'package:flutter_mool/screens/home_screen.dart';
+
 import 'package:flutter_mool/screens/splash_screen.dart';
 import 'package:flutter_mool/screens/welcome_screen.dart';
 
@@ -22,7 +27,19 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch()
             .copyWith(secondary: Colors.white), //accentColor: Colors.white,
       ),
-      home: SplashScreen(),
+      localizationsDelegates: [
+        //AppLocalizations.delegate,
+        ForgotPassScreenTranslations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', ''), // English
+        // Add other locales here
+      ],
+      home:
+          WelcomeScreen(), //HomeScreen(), //WelcomeScreen(), //SplashScreen(),
     );
   }
 }

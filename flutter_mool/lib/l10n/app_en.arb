@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "forget": "Forget",
+  "@forget": {
+    "description": "The word 'Forget' in the forgot password screen"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "The word 'Password' in the forgot password screen"
+  },
+  "emailOrMobile": "Email or Mobile Number",
+  "@emailOrMobile": {
+    "description": "Label for email or mobile number input field"
+  },
+  "submit": "Submit",
+  "@submit": {
+    "description": "Label for submit button"
+  }
+}
