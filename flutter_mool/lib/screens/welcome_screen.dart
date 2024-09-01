@@ -3,6 +3,8 @@ import 'package:flutter_mool/screens/home_screen.dart';
 import 'package:flutter_mool/screens/signin_screen.dart';
 import 'package:flutter_mool/screens/signup_screen.dart';
 
+import 'package:flutter_mool/translations/translations_welcome.dart';
+
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
@@ -87,12 +89,12 @@ class WelcomeScreen extends StatelessWidget {
 }
 
 class Form extends StatelessWidget {
-  const Form({
-    super.key,
-  });
+  const Form({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final translations = Translations.en;
+
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -103,10 +105,10 @@ class Form extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            'Get your dream items easily with Mool and get other interesting offers',
+          Text(
+            translations['formTitle']!,
             textAlign: TextAlign.left,
-            style: TextStyle(color: Colors.black, fontSize: 16),
+            style: const TextStyle(color: Colors.black, fontSize: 16),
           ),
           const SizedBox(height: 20),
           Row(
@@ -118,14 +120,15 @@ class Form extends StatelessWidget {
                   width: 100,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.black,
-                        side: const BorderSide(color: Colors.black),
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        )),
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      side: const BorderSide(color: Colors.black),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -133,7 +136,7 @@ class Form extends StatelessWidget {
                             builder: (context) => const SignupScreen()),
                       );
                     },
-                    child: const Text('Sign Up'),
+                    child: Text(translations['signUp']!),
                   ),
                 ),
               ),
@@ -144,13 +147,14 @@ class Form extends StatelessWidget {
                   width: 100,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.black,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        )),
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -158,7 +162,7 @@ class Form extends StatelessWidget {
                             builder: (context) => const SigninScreen()),
                       );
                     },
-                    child: const Text('Sign in'),
+                    child: Text(translations['signIn']!),
                   ),
                 ),
               ),
@@ -176,17 +180,17 @@ class Form extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Continue as ',
+                        text: translations['continueAsGuest1']!,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
                         ),
                       ),
                       TextSpan(
-                        text: 'guest',
+                        text: translations['continueAsGuest2']!,
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -204,17 +208,17 @@ class Form extends StatelessWidget {
             onPressed: () {},
             child: Center(
               child: RichText(
-                text: const TextSpan(
+                text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'By continuing, you agree to ',
+                      text: translations['termsAndConditions1']!,
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
                       ),
                     ),
                     TextSpan(
-                      text: 'our Terms and conditions',
+                      text: translations['termsAndConditions2']!,
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
