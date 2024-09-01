@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
-// import 'package:flutter_mool/screens/mylist_screen.dart';
+import 'package:flutter_mool/screens/mylist_screen.dart';
 import 'package:flutter_mool/widgets/buildNewCardItem.dart';
 
 class NewSection extends StatelessWidget {
@@ -25,10 +25,10 @@ class NewSection extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => MylistScreen()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MylistScreen()),
+                  );
                 },
                 child: Text(
                   'See All >',
