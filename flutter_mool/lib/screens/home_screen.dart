@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
+import 'package:flutter_mool/screens/notifications_screen.dart';
 // import 'package:flutter_mool/screens/categories_screen.dart';
 import 'package:flutter_mool/widgets/custom_bottomnavbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -39,7 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.search, color: Colors.white), onPressed: () {}),
           IconButton(
               icon: Icon(Icons.notifications, color: Colors.white),
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NotificationScreen()),
+                );
+              }),
         ],
       ),
       body: Stack(
