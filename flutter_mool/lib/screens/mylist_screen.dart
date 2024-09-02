@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
 import 'package:flutter_mool/widgets/buildNewCardItem.dart';
 
+import '../widgets/custom_filter_bottom_app_bar.dart';
+
 class MylistScreen extends StatefulWidget {
   @override
   State<MylistScreen> createState() => _MylistScreenState();
@@ -96,6 +98,7 @@ class _MylistScreenState extends State<MylistScreen> {
           SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
       ),
+      bottomNavigationBar: CustomFilterBottomAppBar(),
     );
   }
 }
