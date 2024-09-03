@@ -22,7 +22,7 @@ class SearchScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: const Color.fromARGB(255, 46, 46, 51),
           title: TextField(
             decoration: InputDecoration(
               hintText: 'What are you looking for?',
