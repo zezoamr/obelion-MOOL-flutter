@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_mool/cubits/search/search_cubit.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
 import 'package:flutter_mool/screens/notifications_screen.dart';
+import 'package:flutter_mool/screens/searchscreen.dart';
 // import 'package:flutter_mool/screens/categories_screen.dart';
 import 'package:flutter_mool/widgets/custom_bottomnavbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -37,7 +40,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-              icon: Icon(Icons.search, color: Colors.white), onPressed: () {}),
+              icon: Icon(Icons.search, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider.value(
+                      value: context.read<
+                          SearchCubit>(), // Passing the existing SearchCubit
+                      child: SearchScreen(),
+                    ),
+                  ),
+                );
+              }),
           IconButton(
               icon: Icon(Icons.notifications, color: Colors.white),
               onPressed: () {
