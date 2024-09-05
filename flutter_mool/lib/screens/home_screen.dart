@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mool/cubits/search/search_cubit.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
+import 'package:flutter_mool/screens/discover_screen.dart';
 import 'package:flutter_mool/screens/notifications_screen.dart';
 import 'package:flutter_mool/screens/searchscreen.dart';
 import 'package:flutter_mool/screens/categories_screen.dart';
@@ -151,6 +152,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => CategoriesScreen()));
+                    break;
+                  case 2:
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DiscoverScreen()));
                     break;
                 }
               },
