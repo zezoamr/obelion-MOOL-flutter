@@ -4,7 +4,8 @@ import 'package:flutter_mool/cubits/search/search_cubit.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
 import 'package:flutter_mool/screens/notifications_screen.dart';
 import 'package:flutter_mool/screens/searchscreen.dart';
-// import 'package:flutter_mool/screens/categories_screen.dart';
+import 'package:flutter_mool/screens/categories_screen.dart';
+import 'package:flutter_mool/screens/mylist_screen.dart';
 import 'package:flutter_mool/widgets/custom_bottomnavbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -134,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SliverToBoxAdapter(child: SizedBox(height: 40)),
+              SliverToBoxAdapter(child: SizedBox(height: 90)),
             ],
           ),
           Positioned(
@@ -144,14 +145,14 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CustomBottomNavBar(
               currentIndex: 0,
               onTap: (index) {
-                // switch (index) {
-                //   case 1:
-                //     Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //             builder: (context) => CategoriesScreen()));
-                //     break;
-                // }
+                switch (index) {
+                  case 1:
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoriesScreen()));
+                    break;
+                }
               },
             ),
           ),
@@ -384,14 +385,14 @@ class TwoCardsGrid extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: 5),
         children: [
-          _buildCard('VACATION WEAR'),
-          _buildCard('ACCESSORIES'),
+          _buildCard('My List', context),
+          _buildCard('ACCESSORIES', context),
         ],
       ),
     );
   }
 
-  Widget _buildCard(String title) {
+  Widget _buildCard(String title, context) {
     return Card(
       color: Colors.white,
       shape: RoundedRectangleBorder(
@@ -409,17 +410,23 @@ class TwoCardsGrid extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 30,
+            bottom: 0,
             left: 10,
             child: Container(
               padding: const EdgeInsets.all(20.0),
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              child: TextButton(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MylistScreen()));
+                },
               ),
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
 import 'package:flutter_mool/screens/mylist_screen.dart';
+import 'package:flutter_mool/screens/productlist_screen.dart';
 import 'package:flutter_mool/widgets/buildNewCardItem.dart';
 
 class NewSection extends StatelessWidget {
@@ -27,7 +28,8 @@ class NewSection extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MylistScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => ProductlistScreen()),
                   );
                 },
                 child: Text(

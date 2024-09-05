@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
 
-Widget buildNewCardItem(SectionItem item) {
+Widget buildNewCardItem(SectionItem item, {double givewidth = 220}) {
   return Container(
-    width: 220,
-    margin: EdgeInsets.symmetric(horizontal: 7),
+    width: givewidth,
+    margin: EdgeInsets.symmetric(horizontal: 6),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,8 +28,12 @@ Widget buildNewCardItem(SectionItem item) {
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.favorite_border, color: Colors.black),
+                    icon: item.isFav
+                        ? Icon(Icons.favorite, color: Colors.black, size: 20)
+                        : Icon(Icons.favorite_border, size: 20),
                     onPressed: () {},
+                    padding: EdgeInsets.all(4),
+                    constraints: BoxConstraints(),
                   ),
                 ),
               ),
@@ -39,23 +43,29 @@ Widget buildNewCardItem(SectionItem item) {
                   left: 0,
                   child: Container(
                     width: 50,
-                    padding: EdgeInsets.only(left: 10, top: 4, bottom: 4),
+                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 6),
                     decoration: BoxDecoration(
                       color: Colors.red,
                     ),
                     child: Text(
                       '${item.discountPercentage}%',
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                     ),
                   ),
                 ),
             ],
           ),
         ),
-        SizedBox(height: 8),
-        Text(item.title, style: TextStyle(fontSize: 16)),
         SizedBox(height: 4),
+        Text(item.title,
+            style: TextStyle(fontSize: 16),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis),
+        SizedBox(height: 2),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -68,12 +78,13 @@ Widget buildNewCardItem(SectionItem item) {
                       item.originalPrice!,
                       style: TextStyle(
                         decoration: TextDecoration.lineThrough,
-                        fontSize: 12,
+                        fontSize: 10,
                       ),
                     ),
-                  SizedBox(width: 5),
+                  SizedBox(width: 4),
                   Text(item.price,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                 ],
               ),
             ),
@@ -81,13 +92,15 @@ Widget buildNewCardItem(SectionItem item) {
               decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15),
+                  topLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12),
                 ),
               ),
               child: IconButton(
-                icon: Icon(Icons.add, color: Colors.white),
+                icon: Icon(Icons.add, color: Colors.white, size: 16),
                 onPressed: () {},
+                padding: EdgeInsets.all(4),
+                constraints: BoxConstraints(),
               ),
             ),
           ],

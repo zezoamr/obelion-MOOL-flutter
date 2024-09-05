@@ -4,6 +4,7 @@ class SectionItem {
   final String imageAsset;
   final int? discountPercentage;
   final String? originalPrice;
+  bool isFav;
 
   SectionItem({
     required this.title,
@@ -11,5 +12,6 @@ class SectionItem {
     required this.imageAsset,
     this.discountPercentage,
     this.originalPrice,
+    this.isFav = false,
   });
 }
