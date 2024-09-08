@@ -176,15 +176,14 @@ class DiscoverScreen extends StatelessWidget {
                       itemCount: 2,
                       itemBuilder: (context, index) {
                         return buildNewCardItem(
-                          SectionItem(
-                            title: 'Red Dress',
-                            price: '2200 SAR',
-                            imageAsset: 'assets/images/home/10.png',
-                            discountPercentage: 20,
-                            originalPrice: '2500 SAR',
-                          ),
-                          givewidth: 60,
-                        );
+                            SectionItem(
+                              title: 'Red Dress',
+                              price: '2200 SAR',
+                              imageAsset: 'assets/images/home/10.png',
+                              discountPercentage: 20,
+                              originalPrice: '2500 SAR',
+                            ),
+                            context);
                       },
                     ),
                   ),

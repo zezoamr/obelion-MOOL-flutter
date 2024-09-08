@@ -48,8 +48,7 @@ class MainApp extends StatelessWidget {
           Locale('en', ''), // English
           // Add other locales here
         ],
-        home:
-            ProductdetailsScreen(), //HomeScreen(), //WelcomeScreen(), //SplashScreen(),
+        home: HomeScreen(), //HomeScreen(), //WelcomeScreen(), //SplashScreen(),
       ),
     );
   }

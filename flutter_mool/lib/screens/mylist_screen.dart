@@ -197,7 +197,7 @@ class CardsGrid extends StatelessWidget {
       ),
       itemCount: items.length,
       itemBuilder: (context, index) {
-        return buildNewCardItem(items[index]);
+        return buildNewCardItem(items[index], context);
       },
     );
   }

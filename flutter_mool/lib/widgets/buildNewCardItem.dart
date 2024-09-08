@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/data/SectionItem.dart';
+import 'package:flutter_mool/screens/productdetails_screen.dart';
 
-Widget buildNewCardItem(SectionItem item, {double givewidth = 220}) {
+Widget buildNewCardItem(SectionItem item, BuildContext context,
+    {double givewidth = 220}) {
   return Container(
     width: givewidth,
     margin: EdgeInsets.symmetric(horizontal: 6),
@@ -12,11 +14,21 @@ Widget buildNewCardItem(SectionItem item, {double givewidth = 220}) {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  item.imageAsset,
-                  fit: BoxFit.cover,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductdetailsScreen(),
+                    ),
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    item.imageAsset,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Positioned(

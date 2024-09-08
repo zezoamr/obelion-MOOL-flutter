@@ -48,7 +48,8 @@ class NewSection extends StatelessWidget {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: items.length,
-            itemBuilder: (context, index) => buildNewCardItem(items[index]),
+            itemBuilder: (context, index) =>
+                buildNewCardItem(items[index], context),
           ),
         ),
       ],
