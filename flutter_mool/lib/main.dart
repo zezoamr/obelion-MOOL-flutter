@@ -6,9 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mool/translations/forgot-pass-screen-translations.dart';
 
 import 'package:flutter_mool/screens/home_screen.dart';
-
 import 'package:flutter_mool/screens/splash_screen.dart';
 import 'package:flutter_mool/screens/welcome_screen.dart';
+import 'package:flutter_mool/screens/productdetails_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -49,7 +49,7 @@ class MainApp extends StatelessWidget {
           // Add other locales here
         ],
         home:
-            WelcomeScreen(), //HomeScreen(), //WelcomeScreen(), //SplashScreen(),
+            ProductdetailsScreen(), //HomeScreen(), //WelcomeScreen(), //SplashScreen(),
       ),
     );
   }
