@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mool/data/SectionItem.dart';
-import 'package:flutter_mool/widgets/buildNewCardItem.dart';
 
-import '../widgets/custom_filter_bottom_app_bar.dart';
+import 'package:flutter_mool/home/data/SectionItem.dart';
+import 'package:flutter_mool/home/widgets/buildNewCardItem.dart';
 
-class ProductlistScreen extends StatefulWidget {
+class MylistScreen extends StatefulWidget {
   @override
-  State<ProductlistScreen> createState() => _MylistScreenState();
+  State<MylistScreen> createState() => _MylistScreenState();
 }
 
-class _MylistScreenState extends State<ProductlistScreen> {
+class _MylistScreenState extends State<MylistScreen> {
   String _selectedCategory = 'All';
 
   @override
@@ -20,7 +19,7 @@ class _MylistScreenState extends State<ProductlistScreen> {
         backgroundColor: const Color.fromARGB(255, 46, 46, 51),
         title: Row(
           children: [
-            Text('Product List', style: TextStyle(color: Colors.white)),
+            Text('My List', style: TextStyle(color: Colors.white)),
           ],
         ),
         leading: GestureDetector(
@@ -57,48 +56,54 @@ class _MylistScreenState extends State<ProductlistScreen> {
                 price: '2500 SAR',
                 discountPercentage: 20,
                 originalPrice: '5000 SAR',
-                imageAsset: 'assets/images/home/13.png'),
+                imageAsset: 'assets/images/home/13.png',
+                isFav: true),
             SectionItem(
                 title: 'Elegant Blazer',
                 price: '2500 SAR',
                 discountPercentage: 20,
                 originalPrice: '5000 SAR',
-                imageAsset: 'assets/images/home/13.png'),
+                imageAsset: 'assets/images/home/13.png',
+                isFav: true),
             SectionItem(
                 title: 'Elegant Blazer',
                 price: '2500 SAR',
                 discountPercentage: 20,
                 originalPrice: '5000 SAR',
-                imageAsset: 'assets/images/home/13.png'),
+                imageAsset: 'assets/images/home/13.png',
+                isFav: true),
             SectionItem(
                 title: 'Elegant Blazer',
                 price: '2500 SAR',
                 discountPercentage: 20,
                 originalPrice: '5000 SAR',
-                imageAsset: 'assets/images/home/13.png'),
+                imageAsset: 'assets/images/home/13.png',
+                isFav: true),
             SectionItem(
                 title: 'Elegant Blazer',
                 price: '2500 SAR',
                 discountPercentage: 20,
                 originalPrice: '5000 SAR',
-                imageAsset: 'assets/images/home/13.png'),
+                imageAsset: 'assets/images/home/13.png',
+                isFav: true),
             SectionItem(
                 title: 'Elegant Blazer',
                 price: '2500 SAR',
                 discountPercentage: 20,
                 originalPrice: '5000 SAR',
-                imageAsset: 'assets/images/home/13.png'),
+                imageAsset: 'assets/images/home/13.png',
+                isFav: true),
             SectionItem(
                 title: 'Elegant Blazer',
                 price: '2500 SAR',
                 discountPercentage: 20,
                 originalPrice: '5000 SAR',
-                imageAsset: 'assets/images/home/13.png'),
+                imageAsset: 'assets/images/home/13.png',
+                isFav: true),
           ])),
           SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
       ),
-      bottomNavigationBar: CustomFilterBottomAppBar(),
     );
   }
 }

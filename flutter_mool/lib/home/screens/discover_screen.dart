@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mool/data/SectionItem.dart';
-import 'package:flutter_mool/widgets/buildNewCardItem.dart';
+import 'package:flutter_mool/home/data/SectionItem.dart';
+import 'package:flutter_mool/home/widgets/buildNewCardItem.dart';
 
 class DiscoverScreen extends StatelessWidget {
   const DiscoverScreen({super.key});

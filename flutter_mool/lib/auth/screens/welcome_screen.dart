@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mool/screens/home_screen.dart';
-import 'package:flutter_mool/screens/signin_screen.dart';
-import 'package:flutter_mool/screens/signup_screen.dart';
-
-import 'package:flutter_mool/translations/translations_welcome.dart';
+import 'package:flutter_mool/home/screens/home_screen.dart';
+import 'package:flutter_mool/auth/screens/signin_screen.dart';
+import 'package:flutter_mool/auth/screens/signup_screen.dart';
+import 'package:flutter_mool/auth/translations/translations_signup.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

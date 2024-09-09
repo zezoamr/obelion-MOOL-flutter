@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_mool/cubits/search/search_cubit.dart';
+import 'package:flutter_mool/home/cubits/search/search_cubit.dart';
 
 // WillPopScope(
 //       onWillPop: () async {

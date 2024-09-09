@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_mool/cubits/search/search_cubit.dart';
-import 'package:flutter_mool/data/SectionItem.dart';
-import 'package:flutter_mool/screens/discover_screen.dart';
-import 'package:flutter_mool/screens/notifications_screen.dart';
-import 'package:flutter_mool/screens/searchscreen.dart';
-import 'package:flutter_mool/screens/categories_screen.dart';
-import 'package:flutter_mool/screens/mylist_screen.dart';
-import 'package:flutter_mool/widgets/custom_bottomnavbar.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_mool/home/cubits/search/search_cubit.dart';
+import 'package:flutter_mool/home/data/SectionItem.dart';
+import 'package:flutter_mool/home/screens/categories_screen.dart';
+import 'package:flutter_mool/home/screens/discover_screen.dart';
+import 'package:flutter_mool/home/screens/mylist_screen.dart';
+import 'package:flutter_mool/home/screens/notifications_screen.dart';
+import 'package:flutter_mool/home/screens/searchscreen.dart';
+import 'package:flutter_mool/home/widgets/custom_bottomnavbar.dart';
 
 import '../widgets/delivery_banner.dart';
 import '../widgets/discount_banner.dart';

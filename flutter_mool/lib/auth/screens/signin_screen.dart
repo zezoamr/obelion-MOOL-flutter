@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mool/screens/confirmcode_screen.dart';
-import 'package:flutter_mool/screens/signin_screen.dart';
-import 'package:flutter_mool/translations/translations_signup.dart';
+import 'package:flutter_mool/auth/screens/forgot_pass_screen.dart';
+import 'package:flutter_mool/auth/screens/signup_screen.dart';
+import 'package:flutter_mool/auth/widgets/buildSocialButton.dart';
+import 'package:flutter_mool/auth/widgets/buildTextField.dart';
 
-import 'package:flutter_mool/widgets/buildTextField.dart';
-import 'package:flutter_mool/widgets/dividerWithText.dart';
-import 'package:flutter_mool/widgets/buildDropdownField.dart';
-import 'package:flutter_mool/widgets/buildSocialButton.dart';
+import 'package:flutter_mool/auth/widgets/dividerWithText.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+class SigninScreen extends StatelessWidget {
+  const SigninScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final translations = Translations.en;
     return Scaffold(
       body: Stack(
         children: [
@@ -25,7 +22,7 @@ class SignupScreen extends StatelessWidget {
               ),
             ),
           ),
-          ListView(
+          Column(
             children: [
               AppBar(
                 backgroundColor: Colors.transparent,
@@ -47,13 +44,15 @@ class SignupScreen extends StatelessWidget {
                 ),
                 centerTitle: true,
               ),
-              const SizedBox(height: 50),
-              Padding(
+              const Spacer(
+                flex: 4,
+              ),
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    translations['Create Account']!,
+                    'Sign in',
                     style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.bold,
@@ -62,22 +61,24 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    translations['Start shopping now']!,
+                    'Welcome !',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 34,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              const SignupForm(),
+              const Spacer(
+                flex: 1,
+              ),
+              SigninForm(),
             ],
           ),
         ],
@@ -86,12 +87,11 @@ class SignupScreen extends StatelessWidget {
   }
 }
 
-class SignupForm extends StatelessWidget {
-  const SignupForm({super.key});
+class SigninForm extends StatelessWidget {
+  const SigninForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final translations = Translations.en;
     return Container(
       decoration: const BoxDecoration(
         color: Color.fromARGB(255, 237, 237, 237),
@@ -100,26 +100,12 @@ class SignupForm extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const SizedBox(height: 5),
-          buildTextField(translations['First Name']!),
-          buildTextField(translations['Last Name']!),
-          buildTextField(translations['Email']!),
-          buildDropdownField(context, translations['Country']!),
-          Row(
-            children: [
-              SizedBox(
-                width: 80,
-                child: buildTextField(translations['+971']!),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: buildTextField(translations['Mobile No.']!),
-              ),
-            ],
-          ),
-          buildTextField(translations['Password']!, isPassword: true),
+          const SizedBox(height: 30),
+          buildTextField('Email'),
+          buildTextField('Password', isPassword: true),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black,
@@ -130,35 +116,45 @@ class SignupForm extends StatelessWidget {
               ),
               fixedSize: const Size(double.infinity, 50),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ConfirmCodeScreen()),
-              );
-            },
-            child: Text(translations['Sign Up']!),
+            onPressed: () {},
+            child: const Text('Sign In'),
           ),
           const SizedBox(height: 10),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ForgotPassScreen()),
+                );
+              },
+              child: Text(
+                'Forget Password?',
+                style: TextStyle(color: Colors.blue[300]),
+              ),
+            ),
+          ),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(translations['Already have account?']!),
+              const Text('Don\'t have an account? '),
               TextButton(
-                child: Text(translations['Login']!,
+                child: const Text('Sign Up',
                     style: TextStyle(color: Colors.black)),
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SigninScreen()),
+                        builder: (context) => const SignupScreen()),
                   );
                 },
               ),
             ],
           ),
           const SizedBox(height: 5),
-          DividerWithText(text: translations['OR']!, width: 300),
+          DividerWithText(text: 'OR', width: 300),
           const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

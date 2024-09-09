@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mool/data/SectionItem.dart';
-import 'package:flutter_mool/screens/productdetails_screen.dart';
+import 'package:flutter_mool/home/data/SectionItem.dart';
+import 'package:flutter_mool/shopping/screens/productdetails_screen.dart';
 
 Widget buildNewCardItem(SectionItem item, BuildContext context,
     {double givewidth = 220}) {

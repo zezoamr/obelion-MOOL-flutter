@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mool/screens/filter_screen.dart';
+import 'package:flutter_mool/home/screens/filter_screen.dart';
 
 class CustomFilterBottomAppBar extends StatefulWidget {
   const CustomFilterBottomAppBar({Key? key}) : super(key: key);

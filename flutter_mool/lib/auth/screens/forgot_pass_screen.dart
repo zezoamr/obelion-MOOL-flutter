@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mool/widgets/buildTextField.dart';
+import 'package:flutter_mool/auth/screens/confirmcode_screen.dart';
+import 'package:flutter_mool/auth/widgets/buildTextField.dart';
+import 'package:flutter_mool/auth/translations/forgot-pass-screen-translations.dart';
 
-class ResetPassScreen extends StatelessWidget {
-  const ResetPassScreen({super.key});
-
+class ForgotPassScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final t = ForgotPassScreenTranslations.of(context);
+
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 46, 46, 51),
+      backgroundColor: Color.fromARGB(255, 46, 46, 51),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
-            Navigator.pop(context); // Handle back button press
+            Navigator.pop(context);
           },
           child: Image.asset(
             'assets/images/account/arrowback.png',
@@ -21,18 +23,23 @@ class ResetPassScreen extends StatelessWidget {
             height: 24,
           ),
         ),
+        title: Image.asset(
+          'assets/images/splash/splashtitle.png',
+          width: 100,
+          height: 60,
+        ),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const [
+                children: [
                   Text(
-                    'Reset',
+                    t.forget,
                     style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.bold,
@@ -40,7 +47,7 @@ class ResetPassScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Password',
+                    t.password,
                     style: TextStyle(
                       fontSize: 34,
                       fontWeight: FontWeight.bold,
@@ -50,9 +57,9 @@ class ResetPassScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
-            const Expanded(
-              child: ResetPassForm(),
+            SizedBox(height: 20),
+            Expanded(
+              child: ForgotPassForm(),
             ),
           ],
         ),
@@ -61,41 +68,47 @@ class ResetPassScreen extends StatelessWidget {
   }
 }
 
-class ResetPassForm extends StatelessWidget {
-  const ResetPassForm({super.key});
-
+class ForgotPassForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final t = ForgotPassScreenTranslations.of(context);
+
     return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 237, 237, 237),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 237, 237, 237),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
       ),
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 30),
-          buildTextField('New Password', isPassword: true),
-          const SizedBox(height: 20),
-          buildTextField('Confirm Password', isPassword: true),
-          const Spacer(flex: 30),
+          SizedBox(height: 30),
+          buildTextField(t.emailOrMobile),
+          Spacer(flex: 10),
           ElevatedButton(
+            child: Text(t.submit),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black,
               foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 15),
+              padding: EdgeInsets.symmetric(vertical: 15),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            onPressed: () {},
-            child: const Text('Submit'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ConfirmCodeScreen()),
+              );
+            },
           ),
-          const Spacer(flex: 2),
+          Spacer(
+            flex: 1,
+          ),
         ],
       ),
     );

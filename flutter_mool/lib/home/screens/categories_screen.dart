@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mool/screens/discover_screen.dart';
-import 'package:flutter_mool/screens/home_screen.dart';
-import 'package:flutter_mool/widgets/custom_bottomnavbar.dart';
+import 'package:flutter_mool/home/screens/discover_screen.dart';
+import 'package:flutter_mool/home/screens/home_screen.dart';
+import 'package:flutter_mool/home/widgets/custom_bottomnavbar.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
