@@ -10,6 +10,7 @@ import 'package:flutter_mool/home/screens/mylist_screen.dart';
 import 'package:flutter_mool/home/screens/notifications_screen.dart';
 import 'package:flutter_mool/home/screens/searchscreen.dart';
 import 'package:flutter_mool/home/widgets/custom_bottomnavbar.dart';
+import 'package:flutter_mool/shopping/screens/cart_screen.dart';
 
 import '../widgets/delivery_banner.dart';
 import '../widgets/discount_banner.dart';
@@ -159,6 +160,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => DiscoverScreen()));
+                    break;
+                  case 3:
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CartScreen()));
                     break;
                 }
               },

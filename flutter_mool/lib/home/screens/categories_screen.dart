@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mool/home/screens/discover_screen.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
 import 'package:flutter_mool/home/widgets/custom_bottomnavbar.dart';
+import 'package:flutter_mool/shopping/screens/cart_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -88,6 +89,10 @@ class _MyCategoriesScreenState extends State<CategoriesScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => DiscoverScreen()));
+                    break;
+                  case 3:
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CartScreen()));
                     break;
                 }
               },
