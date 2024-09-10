@@ -1,6 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/shopping/screens/cart_screen.dart';
+import 'package:flutter_mool/shopping/screens/checkout_address_screen.dart';
 import 'package:flutter_mool/shopping/widgets/horizontal_scroll_cards.dart';
 import 'package:flutter_mool/shopping/widgets/item_details_widget.dart';
 import 'package:flutter_mool/shopping/widgets/rating_widget.dart';
@@ -21,7 +21,13 @@ class ProductdetailsScreen extends StatelessWidget {
         actions: [
           IconButton(
               icon: Icon(Icons.telegram, color: Colors.white),
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CheckoutAddressScreen()),
+                );
+              }),
           IconButton(
               icon: Icon(Icons.shopping_bag, color: Colors.white),
               onPressed: () {
