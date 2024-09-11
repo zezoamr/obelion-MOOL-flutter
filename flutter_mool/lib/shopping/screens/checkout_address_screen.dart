@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/shopping/screens/checkout_payment.dart';
 
 class CheckoutAddressScreen extends StatefulWidget {
   @override
@@ -427,7 +428,10 @@ class CheckoutButton extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => CheckoutPaymentScreen()));
+        },
         child: Text('Confirm and Continue'),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.black,
