@@ -346,6 +346,10 @@ class CheckoutButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ElevatedButton(
         onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CheckoutReviewScreen()),
+          );
         },
         child: Text('Confirm and Continue'),
         style: ElevatedButton.styleFrom(
