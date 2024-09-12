@@ -1,38 +1,119 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_mool/shopping/cubits/checkout_cubit.dart';
 import 'package:flutter_mool/shopping/data/payment_method.dart';
 import 'package:flutter_mool/shopping/screens/checkout_review_screen.dart';
 import 'package:flutter_mool/shopping/widgets/progress_bar_widget.dart';
 
-class CheckoutPaymentScreen extends StatelessWidget {
-  List<PaymentMethod> paymentMethods = [
-    PaymentMethod(
-      name: 'Cash on Delivery',
-      icon: const Icon(Icons.money),
-    ),
-    PaymentMethod(
-      name: 'Credit Card',
-      icon: Icon(Icons.credit_card),
-      // Image.asset('assets/visa_logo.png', width: 30, height: 20),
-      // const SizedBox(width: 4),
-      // Image.asset('assets/mastercard_logo.png', width: 30, height: 20),
+class CheckoutPaymentScreen extends StatefulWidget {
+  @override
+  _CheckoutPaymentScreenState createState() => _CheckoutPaymentScreenState();
+}
 
-      // Row(
-      //   mainAxisSize: MainAxisSize.min,
-      //   children: [
-      //
-      //     // Image.asset('assets/visa_logo.png', width: 30, height: 20),
-      //     // const SizedBox(width: 4),
-      //     // Image.asset('assets/mastercard_logo.png', width: 30, height: 20),
-      //   ],
-      // ),
-      additionalFields: buildCreditCardFields(),
-    ),
-    PaymentMethod(
-      name: 'Paymob',
-      icon: Icon(Icons.credit_card),
-      // icon: Image.asset('assets/paymob_logo.png', width: 60, height: 20),
-    ),
-  ];
+class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
+  List<PaymentMethod> paymentMethods = [];
+
+  final TextEditingController _nameOnCardController = TextEditingController();
+  final TextEditingController _cardNumberController = TextEditingController();
+  final TextEditingController _expiryDateController = TextEditingController();
+  final TextEditingController _cvvController = TextEditingController();
+
+  Map<String, String> paymentDetails = {};
+
+  @override
+  void initState() {
+    super.initState();
+    paymentMethods = [
+      PaymentMethod(
+        name: 'Cash on Delivery',
+        icon: const Icon(Icons.money),
+      ),
+      PaymentMethod(
+        name: 'Credit Card',
+        icon: Icon(Icons.credit_card),
+        additionalFields: buildCreditCardFields(),
+      ),
+      PaymentMethod(
+        name: 'Paymob',
+        icon: Icon(Icons.credit_card),
+      ),
+    ];
+
+    _nameOnCardController.addListener(_updatePaymentDetails);
+    _cardNumberController.addListener(_updatePaymentDetails);
+    _expiryDateController.addListener(_updatePaymentDetails);
+    _cvvController.addListener(_updatePaymentDetails);
+  }
+
+  @override
+  void dispose() {
+    _nameOnCardController.dispose();
+    _cardNumberController.dispose();
+    _expiryDateController.dispose();
+    _cvvController.dispose();
+    super.dispose();
+  }
+
+  void _updatePaymentDetails() {
+    setState(() {
+      paymentDetails = {
+        'nameOnCard': _nameOnCardController.text,
+        'cardNumber': _cardNumberController.text,
+        'expiryDate': _expiryDateController.text,
+        'cvv': _cvvController.text,
+      };
+    });
+  }
+
+  Widget buildCreditCardFields() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: _nameOnCardController,
+          decoration: InputDecoration(
+            labelText: 'Name on card',
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
+        const SizedBox(height: 8),
+        TextFormField(
+          controller: _cardNumberController,
+          decoration: InputDecoration(
+            labelText: 'Card Number',
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                controller: _expiryDateController,
+                decoration: InputDecoration(
+                  labelText: 'Expiration date',
+                  hintText: 'MM/YY',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: TextFormField(
+                controller: _cvvController,
+                decoration: InputDecoration(
+                  labelText: 'Security code',
+                  hintText: 'CVV',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +143,9 @@ class CheckoutPaymentScreen extends StatelessWidget {
                 },
               ),
             ),
-            CheckoutButton(),
+            CheckoutButton(
+              paymentDetails: paymentDetails,
+            ),
           ],
         ),
       ),
@@ -70,50 +153,36 @@ class CheckoutPaymentScreen extends StatelessWidget {
   }
 }
 
-Widget buildCreditCardFields() {
-  return Column(
-    children: [
-      TextField(
-        decoration: InputDecoration(
-          labelText: 'Name on card',
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+class CheckoutButton extends StatelessWidget {
+  final Map<String, String> paymentDetails;
+
+  CheckoutButton({
+    required this.paymentDetails,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      child: ElevatedButton(
+        onPressed: () {
+          BlocProvider.of<CheckoutCubit>(context)
+              .setPaymentDetails(paymentDetails);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CheckoutReviewScreen()),
+          );
+        },
+        child: Text('Confirm and Continue'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          padding: EdgeInsets.symmetric(vertical: 16),
         ),
       ),
-      const SizedBox(height: 8),
-      TextField(
-        decoration: InputDecoration(
-          labelText: 'Card Number',
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-      ),
-      const SizedBox(height: 8),
-      Row(
-        children: [
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Expiration date',
-                hintText: 'MM/YY',
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Security code',
-                hintText: 'CVV',
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ],
-  );
+    );
+  }
 }
 
 class PaymentOptionsWidget extends StatefulWidget {
@@ -249,30 +318,6 @@ class _PaymentOptionsWidgetState extends State<PaymentOptionsWidget> {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CheckoutButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CheckoutReviewScreen()),
-          );
-        },
-        child: Text('Confirm and Continue'),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 16),
-        ),
       ),
     );
   }
