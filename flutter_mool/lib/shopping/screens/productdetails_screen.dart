@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/shopping/screens/cart_screen.dart';
 import 'package:flutter_mool/shopping/screens/checkout_address_screen.dart';
+import 'package:flutter_mool/shopping/screens/ratings_reviews_screen.dart';
+import 'package:flutter_mool/shopping/screens/write_review_screen.dart';
 import 'package:flutter_mool/shopping/widgets/horizontal_scroll_cards.dart';
 import 'package:flutter_mool/shopping/widgets/item_details_widget.dart';
 import 'package:flutter_mool/shopping/widgets/rating_widget.dart';
-import 'package:flutter_mool/shopping/widgets/reviews_buttons.dart';
+import 'package:flutter_mool/shopping/widgets/reviews_buttons.dart' as rb;
 import 'package:flutter_mool/shopping/widgets/reviews_widget.dart';
 import 'package:flutter_mool/shopping/widgets/safety_features.dart';
 
 class ProductdetailsScreen extends StatelessWidget {
+  void _NavigateToReviews(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RatingsReviewsScreen()),
+    );
+  }
+
+  void _NavigateToWriteReview(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => WriteReviewScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +66,10 @@ class ProductdetailsScreen extends StatelessWidget {
             ItemDetailsWidget(),
             RatingWidget(),
             ReviewsWidget(),
-            ReviewsButtons(),
+            rb.ReviewsButtons(
+              navigateToReviews: () => _NavigateToReviews(context),
+              navigateToWriteReview: () => _NavigateToWriteReview(context),
+            ),
             SizedBox(height: 16),
             SafetyFeatures(),
             AddToCartButton(),
