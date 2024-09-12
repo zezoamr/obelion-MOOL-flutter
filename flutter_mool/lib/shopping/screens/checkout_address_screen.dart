@@ -1,62 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_mool/shopping/cubits/checkout_cubit.dart';
 import 'package:flutter_mool/shopping/screens/checkout_payment.dart';
 import 'package:flutter_mool/shopping/widgets/progress_bar_widget.dart';
 
-class CheckoutAddressScreen extends StatefulWidget {
-  @override
-  _CheckoutAddressScreenState createState() => _CheckoutAddressScreenState();
-}
-
-class _CheckoutAddressScreenState extends State<CheckoutAddressScreen> {
-  List<Map<String, String>> addresses = [
-    // {
-    //   'country': 'Egypt',
-    //   'fullName': 'Ahmed Saad El din',
-    //   'code': '+20',
-    //   'phoneNumber': '1234567890',
-    //   'streetName': 'Abbas el aqad st.',
-    //   'building': '45',
-    //   'city': 'Cairo',
-    //   'landmark': 'Near Central Park',
-    // },
-  ];
-
+class CheckoutAddressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46, 46, 51),
-        title: Text(
-          'Cart',
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
-      ),
-      body: Column(
-        children: [
-          ProgressBarWidget(currentStep: 1),
-          Expanded(
-            child: ShippingAddressesWidget(
-              addresses: addresses,
-              onEditAddress: _handleEditAddress,
-              onAddNewAddress: _handleAddNewAddress,
+    return BlocBuilder<CheckoutCubit, CheckoutState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: const Color.fromARGB(255, 46, 46, 51),
+            title: Text(
+              'Cart',
+              style: TextStyle(fontSize: 20, color: Colors.white),
             ),
           ),
-          CheckoutButton(),
-        ],
-      ),
+          body: Column(
+            children: [
+              ProgressBarWidget(currentStep: 1),
+              Expanded(
+                child: ShippingAddressesWidget(
+                  addresses: state.addresses,
+                  onEditAddress: (index, newAddress) {
+                    context
+                        .read<CheckoutCubit>()
+                        .updateAddress(index, newAddress);
+                  },
+                  onAddNewAddress: (newAddress) {
+                    context.read<CheckoutCubit>().addAddress(newAddress);
+                  },
+                ),
+              ),
+              CheckoutButton(),
+            ],
+          ),
+        );
+      },
     );
-  }
-
-  void _handleEditAddress(int index, Map<String, String> newAddress) {
-    setState(() {
-      addresses[index] = newAddress;
-    });
-  }
-
-  void _handleAddNewAddress(Map<String, String> newAddress) {
-    setState(() {
-      addresses.add(newAddress);
-    });
   }
 }
 
