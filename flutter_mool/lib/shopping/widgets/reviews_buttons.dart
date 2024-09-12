@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
 class ReviewsButtons extends StatelessWidget {
+  final VoidCallback? _navigateToReviews;
+  final VoidCallback? _navigateToWriteReview;
+
+  ReviewsButtons({
+    VoidCallback? navigateToReviews,
+    VoidCallback? navigateToWriteReview,
+  })  : _navigateToReviews = navigateToReviews ?? _defaultNavigateToReviews,
+        _navigateToWriteReview =
+            navigateToWriteReview ?? _defaultNavigateToWriteReview;
+
+  static void _defaultNavigateToReviews() {}
+  static void _defaultNavigateToWriteReview() {}
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +23,7 @@ class ReviewsButtons extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: TextButton(
-              onPressed: () {},
+              onPressed: _navigateToReviews,
               style: ButtonStyle(
                 padding:
                     WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
@@ -40,7 +53,7 @@ class ReviewsButtons extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: TextButton(
-              onPressed: () {},
+              onPressed: _navigateToWriteReview,
               style: ButtonStyle(
                 padding:
                     WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
