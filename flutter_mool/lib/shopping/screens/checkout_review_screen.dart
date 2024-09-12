@@ -1,30 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_mool/shopping/cubits/checkout_cubit.dart';
 import 'package:flutter_mool/shopping/screens/checkout_done.dart';
 import 'package:flutter_mool/shopping/widgets/progress_bar_widget.dart';
 
 class CheckoutReviewScreen extends StatelessWidget {
-  final List<Map<String, String>> paymentCards = [
-    {'label': 'Card', 'value': '**** 21587', 'expiry': '09/25'},
-    {'label': 'Card', 'value': '**** 12345', 'expiry': '12/26'},
-  ];
-
-  final List<Map<String, String>> shippingAddresses = [
-    {
-      'label': 'Name',
-      'value': 'Ahmed Saad El din',
-      'street': 'Abbas el aqad st.',
-      'building': '45',
-      'city': 'Cairo'
-    },
-    {
-      'label': 'Name',
-      'value': 'Mohamed Ali',
-      'street': 'Tahrir Square',
-      'building': '12',
-      'city': 'Giza'
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,38 +20,41 @@ class CheckoutReviewScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: Column(
-        children: [
-          ProgressBarWidget(currentStep: 3),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Please confirm your order',
-                      style: Theme.of(context).textTheme.titleLarge,
+      body: BlocBuilder<CheckoutCubit, CheckoutState>(
+        builder: (context, state) {
+          return Column(
+            children: [
+              ProgressBarWidget(currentStep: 3),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Please confirm your order',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        SizedBox(height: 16),
+                        if (state.paymentDetails != null)
+                          _buildInfoCard('Payment', state.paymentDetails!),
+                        SizedBox(height: 16),
+                        ...state.addresses
+                            .map((address) =>
+                                _buildInfoCard('Shipping address', address))
+                            .toList(),
+                        SizedBox(height: 16),
+                        _buildOrderSummary(),
+                      ],
                     ),
-                    SizedBox(height: 16),
-                    ...paymentCards
-                        .map((card) => _buildInfoCard('Payment', card))
-                        .toList(),
-                    SizedBox(height: 16),
-                    ...shippingAddresses
-                        .map((address) =>
-                            _buildInfoCard('Shipping address', address))
-                        .toList(),
-                    SizedBox(height: 16),
-                    _buildOrderSummary(),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
-          _buildSubmitButton(context),
-        ],
+              _buildSubmitButton(context),
+            ],
+          );
+        },
       ),
     );
   }
