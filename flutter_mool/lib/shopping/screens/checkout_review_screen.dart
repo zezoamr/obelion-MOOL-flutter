@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/shopping/screens/checkout_done.dart';
 import 'package:flutter_mool/shopping/widgets/progress_bar_widget.dart';
 
 class CheckoutReviewScreen extends StatelessWidget {
@@ -69,7 +70,7 @@ class CheckoutReviewScreen extends StatelessWidget {
               ),
             ),
           ),
-          _buildSubmitButton(),
+          _buildSubmitButton(context),
         ],
       ),
     );
@@ -158,12 +159,17 @@ class CheckoutReviewScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSubmitButton() {
+  Widget _buildSubmitButton(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CheckoutDoneScreen()),
+          );
+        },
         child: Text('Submit Order'),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.black,
