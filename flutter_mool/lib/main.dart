@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mool/home/cubits/search/search_cubit.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
 import 'package:flutter_mool/auth/translations/forgot-pass-screen-translations.dart';
+import 'package:flutter_mool/shopping/cubits/checkout_cubit.dart';
 
 void main() {
   runApp(const MainApp());
@@ -19,6 +20,9 @@ class MainApp extends StatelessWidget {
       providers: [
         BlocProvider<SearchCubit>(
           create: (context) => SearchCubit(),
+        ),
+        BlocProvider<CheckoutCubit>(
+          create: (context) => CheckoutCubit(),
         ),
         // Add other BlocProviders if needed
       ],
