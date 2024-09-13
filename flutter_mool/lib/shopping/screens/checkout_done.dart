@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/home/screens/home_screen.dart';
 import 'package:flutter_mool/shopping/widgets/progress_bar_widget.dart';
 
 class CheckoutDoneScreen extends StatelessWidget {
@@ -72,7 +73,12 @@ class OrderSuccessWidget extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
                 foregroundColor: Colors.white,
