@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mool/home/screens/discover_screen.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
 import 'package:flutter_mool/home/widgets/custom_bottomnavbar.dart';
+import 'package:flutter_mool/settings/screens/change_password_screen.dart';
+import 'package:flutter_mool/settings/screens/your_orders_screen.dart';
+import 'package:flutter_mool/settings/screens/youraccount_screen.dart';
 import 'package:flutter_mool/shopping/screens/cart_screen.dart';
 
 class MyaccountScreen extends StatefulWidget {
@@ -44,25 +47,42 @@ class _MyaccountScreenState extends State<MyaccountScreen> {
         padding: const EdgeInsets.all(16.0),
         children: [
           const SizedBox(height: 8),
-          _buildListTile('Your Account', Icons.person_outline),
+          _buildListTile('Your Account', Icons.person_outline, () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const YouraccountScreen()),
+            );
+          }),
           const SizedBox(height: 8),
-          _buildListTile('Your Orders', Icons.local_shipping_outlined),
+          _buildListTile('Your Orders', Icons.local_shipping_outlined, () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => YourOrdersScreen()),
+            );
+          }),
           const SizedBox(height: 8),
-          _buildListTile('My Favorite', Icons.favorite_border),
+          _buildListTile('My Favorite', Icons.favorite_border, () {}),
           const SizedBox(height: 8),
-          _buildListTile('Address Book', Icons.location_on_outlined),
+          _buildListTile('Address Book', Icons.location_on_outlined, () {}),
           const SizedBox(height: 8),
-          _buildListTile('Change Password', Icons.lock_outline),
+          _buildListTile('Change Password', Icons.lock_outline, () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ChangePasswordScreen()),
+            );
+          }),
           const SizedBox(height: 8),
-          _buildListTile('Language', Icons.language),
+          _buildListTile('Language', Icons.language, () {}),
           const SizedBox(height: 8),
           _buildCountryTile(),
           const SizedBox(height: 8),
-          _buildListTile('About Us', Icons.info_outline),
+          _buildListTile('About Us', Icons.info_outline, () {}),
           const SizedBox(height: 8),
-          _buildListTile('Contact Us', Icons.message_outlined),
+          _buildListTile('Contact Us', Icons.message_outlined, () {}),
           const SizedBox(height: 8),
-          _buildListTile('Logout', Icons.logout),
+          _buildListTile('Logout', Icons.logout, () {}),
         ],
       ),
       bottomNavigationBar: CustomBottomNavBar(
@@ -87,7 +107,7 @@ class _MyaccountScreenState extends State<MyaccountScreen> {
     );
   }
 
-  Widget _buildListTile(String title, IconData icon) {
+  Widget _buildListTile(String title, IconData icon, VoidCallback onTap) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -98,6 +118,7 @@ class _MyaccountScreenState extends State<MyaccountScreen> {
         title: Text(title, style: const TextStyle(color: Colors.black)),
         trailing:
             const Icon(Icons.arrow_forward_ios, color: Colors.black, size: 16),
+        onTap: onTap,
       ),
     );
   }
