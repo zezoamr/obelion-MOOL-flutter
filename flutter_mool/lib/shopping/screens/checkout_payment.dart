@@ -67,46 +67,107 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
 
   Widget buildCreditCardFields() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const Text('Name on card', style: TextStyle(fontSize: 14)),
+        const SizedBox(height: 4),
         TextFormField(
           controller: _nameOnCardController,
           decoration: InputDecoration(
-            labelText: 'Name on card',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
+        const Text('Card Number', style: TextStyle(fontSize: 14)),
+        const SizedBox(height: 4),
         TextFormField(
           controller: _cardNumberController,
           decoration: InputDecoration(
-            labelText: 'Card Number',
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            hintText: '**** **** **** ****',
+            hintStyle: TextStyle(color: Colors.grey[400]),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         Row(
           children: [
             Expanded(
-              child: TextFormField(
-                controller: _expiryDateController,
-                decoration: InputDecoration(
-                  labelText: 'Expiration date',
-                  hintText: 'MM/YY',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Expiration date', style: TextStyle(fontSize: 14)),
+                  const SizedBox(height: 4),
+                  TextFormField(
+                    controller: _expiryDateController,
+                    decoration: InputDecoration(
+                      hintText: 'MM/YY',
+                      hintStyle: TextStyle(color: Colors.grey[400]),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 16),
             Expanded(
-              child: TextFormField(
-                controller: _cvvController,
-                decoration: InputDecoration(
-                  labelText: 'Security code',
-                  hintText: 'CVV',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Security code', style: TextStyle(fontSize: 14)),
+                  const SizedBox(height: 4),
+                  TextFormField(
+                    controller: _cvvController,
+                    decoration: InputDecoration(
+                      hintText: 'CVV',
+                      hintStyle: TextStyle(color: Colors.grey[400]),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
