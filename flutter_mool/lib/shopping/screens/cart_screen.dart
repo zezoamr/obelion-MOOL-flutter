@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/shopping/data/product_item.dart';
+import 'package:flutter_mool/shopping/screens/checkout_address_screen.dart';
 import 'package:flutter_mool/shopping/widgets/cart_list.dart';
 
 class CartScreen extends StatelessWidget {
@@ -77,7 +78,12 @@ class CheckoutButton extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CheckoutAddressScreen()),
+          );
+        },
         child: Text('Proceed to checkout'),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.black,
