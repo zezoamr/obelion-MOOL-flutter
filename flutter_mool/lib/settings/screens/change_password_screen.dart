@@ -29,7 +29,7 @@ class ChangePasswordScreen extends StatelessWidget {
       body: ListView(
         children: [
           const SizedBox(height: 10),
-          ChangeInfo(Oldpass: "old22password"),
+          ChangeInfo(),
         ],
       ),
     );
@@ -37,9 +37,7 @@ class ChangePasswordScreen extends StatelessWidget {
 }
 
 class ChangeInfo extends StatefulWidget {
-  final String Oldpass;
-
-  const ChangeInfo({Key? key, required this.Oldpass}) : super(key: key);
+  const ChangeInfo({Key? key}) : super(key: key);
 
   @override
   _ChangeInfoState createState() => _ChangeInfoState();
@@ -54,7 +52,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
   void initState() {
     super.initState();
 
-    OldpasswordController = TextEditingController(text: widget.Oldpass);
+    OldpasswordController = TextEditingController(text: '');
     NewpasswordController = TextEditingController(text: '');
     ConfirmpasswordController = TextEditingController(text: '');
   }
@@ -76,7 +74,7 @@ class _ChangeInfoState extends State<ChangeInfo> {
         mainAxisSize: MainAxisSize.min,
         children: [
           buildTextField('Old Password', OldpasswordController,
-              isEditable: false),
+              isEditable: true),
           buildTextField('New Password', NewpasswordController,
               isPassword: true),
           buildTextField('Confirm Password', ConfirmpasswordController,
