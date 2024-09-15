@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
 import 'package:flutter_mool/auth/screens/signin_screen.dart';
 import 'package:flutter_mool/auth/screens/signup_screen.dart';
-import 'package:flutter_mool/auth/translations/translations_signup.dart';
+import 'package:flutter_mool/auth/translations/translations_welcome.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -170,7 +170,7 @@ class Form extends StatelessWidget {
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => HomeScreen()),
               );
