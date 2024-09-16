@@ -1,31 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/settings/data/order_data.dart';
+import 'package:flutter_mool/settings/screens/order_details_screen.dart';
 import 'package:flutter_mool/settings/widgets/filter_orders_button.dart';
 import 'package:flutter_mool/settings/widgets/order_card.dart';
 
 class YourOrdersScreen extends StatelessWidget {
   final List<Order> orders = [
     Order(
-        id: 'A255DSD5FF',
-        date: 'Aug 23, 2022',
-        productName: 'Elegant Blazer DARK BLA..',
-        price: 25000,
-        progress: 1,
-        status: OrderStatus.Delivered),
+      id: 'A255DSD5FF',
+      date: 'Aug 23, 2022',
+      productName: 'Elegant Blazer DARK BLA..',
+      price: 2500.0,
+      progress: 4,
+      status: OrderStatus.Delivered,
+      cardLastFourDigits: '2548',
+      shippingAddress: '55 street name, Ryadah, KSA',
+      itemsPrice: 2500.0,
+      discount: 100.0,
+      vatTax: 50.0,
+      promoCodeDiscount: 30.0,
+      promoCode: 'M010',
+    ),
     Order(
-        id: 'A255DSD5FF',
-        date: 'Aug 23, 2022',
-        productName: 'Elegant Blazer',
-        price: 25000,
-        progress: 2,
-        status: OrderStatus.Shipped),
+      id: 'A255DSD5FF',
+      date: 'Aug 23, 2022',
+      productName: 'Elegant Blazer',
+      price: 25000,
+      progress: 2,
+      status: OrderStatus.Shipped,
+      cardLastFourDigits: '2548',
+      shippingAddress: '55 street name, Ryadah, KSA',
+      itemsPrice: 2500.0,
+      discount: 100.0,
+      vatTax: 50.0,
+      promoCodeDiscount: 30.0,
+      promoCode: 'M010',
+    ),
     Order(
-        id: 'A255DSD5FF',
-        date: 'Aug 23, 2022',
-        productName: 'Elegant Blazer',
-        price: 25000,
-        progress: 4,
-        status: OrderStatus.Canceled),
+      id: 'A255DSD5FF',
+      date: 'Aug 23, 2022',
+      productName: 'Elegant Blazer',
+      price: 25000,
+      progress: 4,
+      status: OrderStatus.Canceled,
+      cardLastFourDigits: '2548',
+      shippingAddress: '55 street name, Ryadah, KSA',
+      itemsPrice: 2500.0,
+      discount: 100.0,
+      vatTax: 50.0,
+      promoCodeDiscount: 30.0,
+      promoCode: 'M010',
+    ),
   ];
   YourOrdersScreen({Key? key}) : super(key: key);
 
@@ -83,7 +108,18 @@ class YourOrdersScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: orders.length,
               itemBuilder: (context, index) {
-                return OrderCard(order: orders[index]);
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            OrderDetailScreen(order: orders[index]),
+                      ),
+                    );
+                  },
+                  child: OrderCard(order: orders[index]),
+                );
               },
             ),
           ),
