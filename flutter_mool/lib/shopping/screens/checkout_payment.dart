@@ -168,6 +168,7 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
                         }
                         return null;
                       },
+                      enableInteractiveSelection: false, //disallow paste
                     ),
                   ],
                 ),
