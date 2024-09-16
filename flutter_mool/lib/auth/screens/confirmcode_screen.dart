@@ -141,7 +141,9 @@ class _ConfirmCodeFormState extends State<ConfirmCodeForm> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             child: const Text('Submit'),
           ),
           const Spacer(),
