@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_mool/auth/screens/splash_screen.dart';
 import 'package:flutter_mool/home/cubits/search/search_cubit.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
 import 'package:flutter_mool/shopping/cubits/checkout_cubit.dart';
@@ -51,7 +52,7 @@ class MainApp extends StatelessWidget {
           Locale('en', ''), // English
           // Add other locales here
         ],
-        home: HomeScreen(),
+        home: SplashScreen(),
       ), //ProductdetailsScreen(), //HomeScreen(), //WelcomeScreen(), //SplashScreen(),
     );
   }
