@@ -4,6 +4,7 @@ import 'package:flutter_mool/home/screens/discover_screen.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
 import 'package:flutter_mool/home/screens/mylist_screen.dart';
 import 'package:flutter_mool/home/widgets/custom_bottomnavbar.dart';
+import 'package:flutter_mool/settings/screens/address_book_screen.dart';
 import 'package:flutter_mool/settings/screens/change_password_screen.dart';
 import 'package:flutter_mool/settings/screens/your_orders_screen.dart';
 import 'package:flutter_mool/settings/screens/youraccount_screen.dart';
@@ -72,7 +73,12 @@ class _MyaccountScreenState extends State<MyaccountScreen> {
             );
           }),
           const SizedBox(height: 8),
-          _buildListTile('Address Book', Icons.location_on_outlined, () {}),
+          _buildListTile('Address Book', Icons.location_on_outlined, () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddressBookScreen()),
+            );
+          }),
           const SizedBox(height: 8),
           _buildListTile('Change Password', Icons.lock_outline, () {
             Navigator.push(
