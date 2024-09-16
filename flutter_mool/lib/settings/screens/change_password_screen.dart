@@ -73,11 +73,11 @@ class _ChangeInfoState extends State<ChangeInfo> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          buildTextField('Old Password', OldpasswordController,
+          buildTextField('Old Password', OldpasswordController, context,
               isEditable: true),
-          buildTextField('New Password', NewpasswordController,
+          buildTextField('New Password', NewpasswordController, context,
               isPassword: true),
-          buildTextField('Confirm Password', ConfirmpasswordController,
+          buildTextField('Confirm Password', ConfirmpasswordController, context,
               isPassword: true),
           SizedBox(height: 40),
           ElevatedButton(

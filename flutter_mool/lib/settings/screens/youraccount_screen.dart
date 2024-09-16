@@ -88,12 +88,13 @@ class _ChangeInfoState extends State<ChangeInfo> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          buildTextField('Name', nameController),
-          buildTextField('Email', emailController),
-          buildTextField('Phone', phoneController, isVerified: true),
-          buildTextField('Date of birth', dateOfBirthController,
+          buildTextField('Name', nameController, context),
+          buildTextField('Email', emailController, context),
+          buildTextField('Phone', phoneController, isVerified: true, context),
+          buildTextField('Date of birth', dateOfBirthController, context,
               hasCalendarIcon: true),
-          buildTextField('Password', passwordController, isPassword: true),
+          buildTextField(
+              'Password', passwordController, isPassword: true, context),
           SizedBox(height: 40),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
