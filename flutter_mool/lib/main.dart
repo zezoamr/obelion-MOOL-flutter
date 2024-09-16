@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mool/home/cubits/search/search_cubit.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
-import 'package:flutter_mool/auth/translations/forgot-pass-screen-translations.dart';
 import 'package:flutter_mool/shopping/cubits/checkout_cubit.dart';
+
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_mool/auth/translations/forgot-pass-screen-translations.dart';
+
+import 'package:flutter_mool/auth/screens/welcome_screen.dart';
+import 'package:flutter_mool/shopping/screens/productdetails_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -48,8 +51,8 @@ class MainApp extends StatelessWidget {
           Locale('en', ''), // English
           // Add other locales here
         ],
-        home: HomeScreen(), //HomeScreen(), //WelcomeScreen(), //SplashScreen(),
-      ),
+        home: HomeScreen(),
+      ), //ProductdetailsScreen(), //HomeScreen(), //WelcomeScreen(), //SplashScreen(),
     );
   }
 }
