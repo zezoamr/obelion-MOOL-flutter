@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/auth/widgets/buildDropdownField.dart';
 import 'package:flutter_mool/home/screens/discover_screen.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
+import 'package:flutter_mool/home/screens/mylist_screen.dart';
 import 'package:flutter_mool/home/widgets/custom_bottomnavbar.dart';
 import 'package:flutter_mool/settings/screens/change_password_screen.dart';
 import 'package:flutter_mool/settings/screens/your_orders_screen.dart';
@@ -16,14 +18,23 @@ class MyaccountScreen extends StatefulWidget {
 
 class _MyaccountScreenState extends State<MyaccountScreen> {
   int _selectedIndex = 4;
+  String _selectedCountry = 'Saudi Arabia';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 213, 213, 213),
+      backgroundColor: const Color.fromARGB(255, 224, 224, 224),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 46, 51),
         elevation: 0,
+        title: const Text(
+          'My Account',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context); // Handle back button press
@@ -32,14 +43,6 @@ class _MyaccountScreenState extends State<MyaccountScreen> {
             'assets/images/account/arrowback.png',
             width: 24,
             height: 24,
-          ),
-        ),
-        title: const Text(
-          'My Account',
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -62,7 +65,12 @@ class _MyaccountScreenState extends State<MyaccountScreen> {
             );
           }),
           const SizedBox(height: 8),
-          _buildListTile('My Favorite', Icons.favorite_border, () {}),
+          _buildListTile('My Favorite', Icons.favorite_border, () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MylistScreen()),
+            );
+          }),
           const SizedBox(height: 8),
           _buildListTile('Address Book', Icons.location_on_outlined, () {}),
           const SizedBox(height: 8),
@@ -124,24 +132,39 @@ class _MyaccountScreenState extends State<MyaccountScreen> {
   }
 
   Widget _buildCountryTile() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: ListTile(
-        leading: const Icon(Icons.public, color: Colors.black),
-        title: const Text('Country', style: TextStyle(color: Colors.black)),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset('assets/images/flags/saudi_arabia.png',
-                width: 24, height: 24),
-            const SizedBox(width: 8),
-            const Icon(Icons.arrow_forward_ios, color: Colors.black, size: 16),
-          ],
+    return GestureDetector(
+      onTap: () =>
+          showCountrySelector(context, _selectedCountry, selectCountry),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ListTile(
+          leading: const Icon(Icons.public, color: Colors.black),
+          title: const Text('Country', style: TextStyle(color: Colors.black)),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'assets/images/flags/${_selectedCountry.toLowerCase().replaceAll(' ', '_')}.png',
+                width: 24,
+                height: 24,
+              ),
+              const SizedBox(width: 8),
+              const Icon(Icons.arrow_forward_ios,
+                  color: Colors.black, size: 16),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void selectCountry(String country) {
+    setState(() {
+      _selectedCountry = country;
+    });
+    Navigator.pop(context);
   }
 }
