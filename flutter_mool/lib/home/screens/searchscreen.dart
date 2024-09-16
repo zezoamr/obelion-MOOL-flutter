@@ -21,8 +21,19 @@ class SearchScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 231, 231, 231),
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 46, 46, 51),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context); // Handle back button press
+            },
+            child: Image.asset(
+              'assets/images/account/arrowback.png',
+              width: 24,
+              height: 24,
+            ),
+          ),
           title: TextField(
             decoration: InputDecoration(
               hintText: 'What are you looking for?',
@@ -65,7 +76,7 @@ class SearchScreen extends StatelessWidget {
                                 searchCubit.search(item);
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.grey[300],
+                                backgroundColor: Colors.white,
                                 foregroundColor: Colors.black,
                               ),
                               child: Text(item),
@@ -82,12 +93,21 @@ class SearchScreen extends StatelessWidget {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: state.recentSearches.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(state.recentSearches[index]),
-                              onTap: () {
-                                searchCubit.search(state.recentSearches[index]);
-                              },
-                              trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  state.recentSearches[index],
+                                ),
+                                onTap: () {
+                                  searchCubit
+                                      .search(state.recentSearches[index]);
+                                },
+                                trailing:
+                                    Icon(Icons.arrow_forward_ios, size: 16),
+                              ),
                             );
                           },
                         ),

@@ -19,9 +19,15 @@ class NotificationScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 46, 51),
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context); // Handle back button press
+          },
+          child: Image.asset(
+            'assets/images/account/arrowback.png',
+            width: 24,
+            height: 24,
+          ),
         ),
         title: Text(
           'Notifications',
@@ -34,8 +40,9 @@ class NotificationScreen extends StatelessWidget {
             Divider(height: 1, color: Colors.grey),
         itemBuilder: (context, index) {
           return ListTile(
+            tileColor: Colors.white,
             leading: CircleAvatar(
-              backgroundColor: Colors.grey[300],
+              backgroundColor: Colors.white,
               child:
                   Icon(Icons.notifications_outlined, color: Colors.grey[600]),
             ),

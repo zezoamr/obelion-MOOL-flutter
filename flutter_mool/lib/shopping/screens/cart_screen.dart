@@ -24,6 +24,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 231, 231, 231),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 46, 51),
         title: Text(
@@ -63,7 +64,7 @@ class SubtotalBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
-      color: Colors.grey[200],
+      color: Colors.grey[100],
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
