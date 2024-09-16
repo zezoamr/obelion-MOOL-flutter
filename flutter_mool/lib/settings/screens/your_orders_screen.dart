@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/settings/data/order_data.dart';
+import 'package:flutter_mool/settings/widgets/filter_orders_button.dart';
 import 'package:flutter_mool/settings/widgets/order_card.dart';
 
 class YourOrdersScreen extends StatelessWidget {
@@ -73,19 +74,7 @@ class YourOrdersScreen extends StatelessWidget {
                       left: BorderSide(color: Colors.grey[300]!, width: 1),
                     ),
                   ),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: const [
-                        Text(
-                          'Filter',
-                          style: TextStyle(color: Colors.blue, fontSize: 18),
-                        ),
-                        Icon(Icons.arrow_forward_ios,
-                            size: 16, color: Colors.blue),
-                      ],
-                    ),
-                  ),
+                  child: FilterOrdersButton(),
                 ),
               ],
             ),
