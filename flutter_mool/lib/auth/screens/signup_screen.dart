@@ -86,8 +86,15 @@ class SignupScreen extends StatelessWidget {
   }
 }
 
-class SignupForm extends StatelessWidget {
+class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
+
+  @override
+  _SignupFormState createState() => _SignupFormState();
+}
+
+class _SignupFormState extends State<SignupForm> {
+  String selectedCountry = 'Select Country';
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +113,12 @@ class SignupForm extends StatelessWidget {
           buildTextField(translations['First Name']!),
           buildTextField(translations['Last Name']!),
           buildTextField(translations['Email']!),
-          buildDropdownField(context, translations['Country']!),
+          buildDropdownField(
+              context,
+              translations['Country']!,
+              selectedCountry,
+              () =>
+                  showCountrySelector(context, selectedCountry, selectCountry)),
           Row(
             children: [
               SizedBox(
@@ -173,5 +185,12 @@ class SignupForm extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void selectCountry(String country) {
+    setState(() {
+      selectedCountry = country;
+    });
+    Navigator.pop(context);
   }
 }

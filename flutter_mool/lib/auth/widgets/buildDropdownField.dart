@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-Widget buildDropdownField(BuildContext context, String label) {
+Widget buildDropdownField(BuildContext context, String label,
+    String selectedValue, Function() onTap) {
   return GestureDetector(
-    onTap: () => showCountrySelector(context),
+    onTap: onTap,
     child: Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
@@ -14,7 +15,12 @@ Widget buildDropdownField(BuildContext context, String label) {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: const TextStyle(color: Colors.grey)),
+          Text(
+            selectedValue,
+            style: TextStyle(
+              color: selectedValue == label ? Colors.grey : Colors.black,
+            ),
+          ),
           const Icon(Icons.arrow_drop_down, color: Colors.grey),
         ],
       ),
@@ -22,7 +28,8 @@ Widget buildDropdownField(BuildContext context, String label) {
   );
 }
 
-void showCountrySelector(BuildContext context) {
+void showCountrySelector(BuildContext context, String selectedCountry,
+    Function(String) selectCountry) {
   showModalBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
@@ -30,7 +37,7 @@ void showCountrySelector(BuildContext context) {
     ),
     builder: (BuildContext context) {
       return Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,9 +47,14 @@ void showCountrySelector(BuildContext context) {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-            _countryOption('Saudi Arabia', true),
-            _countryOption('UAE', false),
-            _countryOption('Egypt', false),
+            buildCountryOption(
+                'Saudi Arabia',
+                selectedCountry == 'Saudi Arabia',
+                () => selectCountry('Saudi Arabia')),
+            buildCountryOption(
+                'UAE', selectedCountry == 'UAE', () => selectCountry('UAE')),
+            buildCountryOption('Egypt', selectedCountry == 'Egypt',
+                () => selectCountry('Egypt')),
             const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -55,7 +67,8 @@ void showCountrySelector(BuildContext context) {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Continue'),
+              child:
+                  const Text('Continue', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
@@ -64,13 +77,9 @@ void showCountrySelector(BuildContext context) {
   );
 }
 
-Widget _countryOption(String country, bool isSelected) {
+Widget buildCountryOption(String country, bool isSelected, Function() onTap) {
   return Container(
-    margin: const EdgeInsets.only(bottom: 10),
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey.shade300),
-      borderRadius: BorderRadius.circular(10),
-    ),
+    margin: const EdgeInsets.only(bottom: 5),
     child: ListTile(
       title: Text(country),
       leading: Image.asset(
@@ -81,9 +90,7 @@ Widget _countryOption(String country, bool isSelected) {
       trailing: isSelected
           ? const Icon(Icons.check_circle, color: Colors.green)
           : const Icon(Icons.circle_outlined, color: Colors.grey),
-      onTap: () {
-        // Handle country selection
-      },
+      onTap: onTap,
     ),
   );
 }
