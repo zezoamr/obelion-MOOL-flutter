@@ -12,6 +12,7 @@ class CheckoutPaymentScreen extends StatefulWidget {
 
 class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
   List<PaymentMethod> paymentMethods = [];
+  final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameOnCardController = TextEditingController();
   final TextEditingController _cardNumberController = TextEditingController();
@@ -58,121 +59,162 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
     setState(() {
       paymentDetails = {
         'nameOnCard': _nameOnCardController.text,
-        'cardNumber': _cardNumberController.text,
+        'cardNumber': _cardNumberController.text.replaceAll(' ', ''),
         'expiryDate': _expiryDateController.text,
         'cvv': _cvvController.text,
       };
     });
+    //print(paymentDetails);
   }
 
   Widget buildCreditCardFields() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('Name on card', style: TextStyle(fontSize: 14)),
-        const SizedBox(height: 4),
-        TextFormField(
-          controller: _nameOnCardController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-          ),
-        ),
-        const SizedBox(height: 16),
-        const Text('Card Number', style: TextStyle(fontSize: 14)),
-        const SizedBox(height: 4),
-        TextFormField(
-          controller: _cardNumberController,
-          decoration: InputDecoration(
-            hintText: '**** **** **** ****',
-            hintStyle: TextStyle(color: Colors.grey[400]),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey),
-            ),
-          ),
-        ),
-        const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Expiration date', style: TextStyle(fontSize: 14)),
-                  const SizedBox(height: 4),
-                  TextFormField(
-                    controller: _expiryDateController,
-                    decoration: InputDecoration(
-                      hintText: 'MM/YY',
-                      hintStyle: TextStyle(color: Colors.grey[400]),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                    ),
-                  ),
-                ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Name on card', style: TextStyle(fontSize: 14)),
+          const SizedBox(height: 4),
+          TextFormField(
+            controller: _nameOnCardController,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey),
               ),
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Security code', style: TextStyle(fontSize: 14)),
-                  const SizedBox(height: 4),
-                  TextFormField(
-                    controller: _cvvController,
-                    decoration: InputDecoration(
-                      hintText: 'CVV',
-                      hintStyle: TextStyle(color: Colors.grey[400]),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                    ),
-                  ),
-                ],
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter the name on the card';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 16),
+          const Text('Card Number', style: TextStyle(fontSize: 14)),
+          const SizedBox(height: 4),
+          TextFormField(
+            controller: _cardNumberController,
+            decoration: InputDecoration(
+              hintText: '**** **** **** ****',
+              hintStyle: TextStyle(color: Colors.grey[400]),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey),
               ),
             ),
-          ],
-        ),
-      ],
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter the card number';
+              }
+              if (value.replaceAll(' ', '').length != 16) {
+                return 'Card number must be 16 digits';
+              }
+              return null;
+            },
+            keyboardType: TextInputType.number,
+          ),
+          const SizedBox(height: 16),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Expiration date',
+                        style: TextStyle(fontSize: 14)),
+                    const SizedBox(height: 4),
+                    TextFormField(
+                      controller: _expiryDateController,
+                      decoration: InputDecoration(
+                        hintText: 'MM/YY',
+                        hintStyle: TextStyle(color: Colors.grey[400]),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the expiry date';
+                        }
+                        if (!RegExp(r'^\d{2}/\d{2}$').hasMatch(value)) {
+                          return 'Use format MM/YY';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Security code', style: TextStyle(fontSize: 14)),
+                    const SizedBox(height: 4),
+                    TextFormField(
+                      controller: _cvvController,
+                      decoration: InputDecoration(
+                        hintText: 'CVV',
+                        hintStyle: TextStyle(color: Colors.grey[400]),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the CVV';
+                        }
+                        if (value.length != 3) {
+                          return 'CVV must be 3 digits';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.number,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -212,6 +254,7 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
             ),
             CheckoutButton(
               paymentDetails: paymentDetails,
+              formKey: _formKey,
             ),
           ],
         ),
@@ -222,9 +265,11 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
 
 class CheckoutButton extends StatelessWidget {
   final Map<String, String> paymentDetails;
+  final GlobalKey<FormState> formKey;
 
   CheckoutButton({
     required this.paymentDetails,
+    required this.formKey,
   });
 
   @override
@@ -234,12 +279,14 @@ class CheckoutButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ElevatedButton(
         onPressed: () {
-          BlocProvider.of<CheckoutCubit>(context)
-              .setPaymentDetails(paymentDetails);
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CheckoutReviewScreen()),
-          );
+          if (formKey.currentState!.validate()) {
+            BlocProvider.of<CheckoutCubit>(context)
+                .setPaymentDetails(paymentDetails);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CheckoutReviewScreen()),
+            );
+          }
         },
         child: Text('Confirm and Continue'),
         style: ElevatedButton.styleFrom(
