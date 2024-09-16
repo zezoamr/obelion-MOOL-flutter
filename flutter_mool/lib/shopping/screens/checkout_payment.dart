@@ -226,7 +226,7 @@ class _CheckoutPaymentScreenState extends State<CheckoutPaymentScreen> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 46, 51),
         title: Text(
-          'Payment',
+          'Checkout',
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
         leading: GestureDetector(
