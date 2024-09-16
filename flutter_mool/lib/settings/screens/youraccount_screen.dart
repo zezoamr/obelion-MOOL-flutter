@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mool/auth/screens/confirmcode_screen.dart';
 import 'package:flutter_mool/settings/data/user_data.dart';
 import 'package:flutter_mool/settings/widgets/buildtextfield.dart';
 
@@ -107,11 +108,16 @@ class _ChangeInfoState extends State<ChangeInfo> {
               fixedSize: const Size(double.infinity, 50),
             ),
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => const ConfirmCodeScreen()),
-              // );
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (BuildContext context) {
+                  return FractionallySizedBox(
+                    heightFactor: 0.7,
+                    child: const ConfirmCodeForm(),
+                  );
+                },
+              );
             },
             child: Text('Sign Up'),
           ),
@@ -127,11 +133,16 @@ class _ChangeInfoState extends State<ChangeInfo> {
               fixedSize: const Size(double.infinity, 50),
             ),
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => const ConfirmCodeScreen()),
-              // );
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (BuildContext context) {
+                  return FractionallySizedBox(
+                    heightFactor: 0.7,
+                    child: const ConfirmCodeForm(),
+                  );
+                },
+              );
             },
             child: Text('Delete Account'),
           ),
