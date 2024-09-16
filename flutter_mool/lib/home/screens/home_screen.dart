@@ -43,6 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
           width: 100,
           height: 60,
         ),
+        leading: SizedBox(
+          width: 1,
+        ),
         actions: [
           IconButton(
               icon: Icon(Icons.search, color: Colors.white),

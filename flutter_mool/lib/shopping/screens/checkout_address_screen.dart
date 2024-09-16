@@ -16,6 +16,16 @@ class CheckoutAddressScreen extends StatelessWidget {
               'Cart',
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.pop(context); // Handle back button press
+              },
+              child: Image.asset(
+                'assets/images/account/arrowback.png',
+                width: 24,
+                height: 24,
+              ),
+            ),
           ),
           body: Column(
             children: [

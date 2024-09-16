@@ -13,9 +13,15 @@ class RatingsReviewsScreen extends StatelessWidget {
           'Ratings And Reviews',
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context); // Handle back button press
+          },
+          child: Image.asset(
+            'assets/images/account/arrowback.png',
+            width: 24,
+            height: 24,
+          ),
         ),
       ),
       body: Column(
