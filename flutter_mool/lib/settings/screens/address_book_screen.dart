@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/shopping/widgets/shipping_addresses_widget.dart';
-import 'package:flutter_mool/shopping/screens/checkout_payment.dart';
-import 'package:flutter_mool/shopping/widgets/progress_bar_widget.dart';
 
 class AddressBookScreen extends StatefulWidget {
   @override
@@ -49,7 +47,6 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
       ),
       body: Column(
         children: [
-          ProgressBarWidget(currentStep: 1),
           Expanded(
             child: addresses.isEmpty && !_isAddingAddress
                 ? NoAddressWidget(onAddAddress: _startAddingAddress)
