@@ -268,33 +268,41 @@ class CheckoutButton extends StatelessWidget {
   final Map<String, String> paymentDetails;
   final GlobalKey<FormState> formKey;
 
-  CheckoutButton({
+  const CheckoutButton({
+    Key? key,
     required this.paymentDetails,
     required this.formKey,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ElevatedButton(
         onPressed: () {
-          if (formKey.currentState!.validate()) {
+          if (formKey.currentState != null &&
+              formKey.currentState!.validate()) {
             BlocProvider.of<CheckoutCubit>(context)
                 .setPaymentDetails(paymentDetails);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => CheckoutReviewScreen()),
             );
+          } else {
+            // Show a snackbar or some other feedback if the form is not valid
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Please fill in all required fields')),
+            );
           }
         },
-        child: Text('Confirm and Continue'),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.black,
           foregroundColor: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 16),
         ),
+        child: const Text('Confirm and Continue'),
       ),
     );
   }
