@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 
+import 'package:flutter_mool/auth/screens/reset_pass_screen.dart';
+
 class ConfirmCodeScreen extends StatelessWidget {
   const ConfirmCodeScreen({Key? key}) : super(key: key);
 
@@ -39,7 +41,9 @@ class ConfirmCodeScreen extends StatelessWidget {
             SizedBox(height: 100),
             const Expanded(
               flex: 8,
-              child: ConfirmCodeForm(),
+              child: ConfirmCodeForm(
+                navigate: true,
+              ),
             ),
           ],
         ),
@@ -49,8 +53,9 @@ class ConfirmCodeScreen extends StatelessWidget {
 }
 
 class ConfirmCodeForm extends StatefulWidget {
-  const ConfirmCodeForm({Key? key}) : super(key: key);
+  const ConfirmCodeForm({Key? key, this.navigate = false}) : super(key: key);
 
+  final bool navigate;
   @override
   _ConfirmCodeFormState createState() => _ConfirmCodeFormState();
 }
@@ -142,7 +147,15 @@ class _ConfirmCodeFormState extends State<ConfirmCodeForm> {
               ),
             ),
             onPressed: () {
-              Navigator.pop(context);
+              //Navigator.pop(context);
+              if (widget.navigate) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ResetPassScreen()),
+                );
+              } else {
+                Navigator.pop(context);
+              }
             },
             child: const Text('Submit'),
           ),

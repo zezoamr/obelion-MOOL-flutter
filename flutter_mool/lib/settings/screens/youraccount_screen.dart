@@ -114,7 +114,9 @@ class _ChangeInfoState extends State<ChangeInfo> {
                 builder: (BuildContext context) {
                   return FractionallySizedBox(
                     heightFactor: 0.7,
-                    child: const ConfirmCodeForm(),
+                    child: const ConfirmCodeForm(
+                      navigate: false,
+                    ),
                   );
                 },
               );
@@ -139,7 +141,9 @@ class _ChangeInfoState extends State<ChangeInfo> {
                 builder: (BuildContext context) {
                   return FractionallySizedBox(
                     heightFactor: 0.7,
-                    child: const ConfirmCodeForm(),
+                    child: ConfirmCodeForm(
+                      navigate: false,
+                    ),
                   );
                 },
               );
