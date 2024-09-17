@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mool/auth/widgets/buildDropdownField.dart';
+import 'package:flutter_mool/home/screens/categories_screen.dart';
 import 'package:flutter_mool/home/screens/discover_screen.dart';
 import 'package:flutter_mool/home/screens/home_screen.dart';
 import 'package:flutter_mool/home/screens/mylist_screen.dart';
@@ -106,6 +107,10 @@ class _MyaccountScreenState extends State<MyaccountScreen> {
             case 0:
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => HomeScreen()));
+              break;
+            case 1:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CategoriesScreen()));
               break;
             case 2:
               Navigator.push(context,
