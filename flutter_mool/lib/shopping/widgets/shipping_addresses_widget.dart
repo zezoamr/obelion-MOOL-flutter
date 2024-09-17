@@ -115,7 +115,17 @@ class _AddressFormState extends State<AddressForm> {
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[300]!),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[300]!),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[300]!),
+          ),
+          fillColor: Colors.white,
+          filled: true,
         ),
       ),
     );
@@ -127,7 +137,17 @@ class _AddressFormState extends State<AddressForm> {
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[300]!),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[300]!),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[300]!),
+          ),
+          fillColor: Colors.white,
+          filled: true,
         ),
         value: controller.text.isEmpty ? null : controller.text,
         onChanged: (String? newValue) {

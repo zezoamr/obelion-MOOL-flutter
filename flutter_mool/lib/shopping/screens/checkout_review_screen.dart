@@ -51,13 +51,12 @@ class CheckoutReviewScreen extends StatelessWidget {
                                 _buildInfoCard('Shipping address', address))
                             .toList(),
                         SizedBox(height: 16),
-                        _buildOrderSummary(),
                       ],
                     ),
                   ),
                 ),
               ),
-              _buildSubmitButton(context),
+              _buildOrderSummaryAndSubmitButton(context),
             ],
           );
         },
@@ -109,24 +108,49 @@ class CheckoutReviewScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildOrderSummary() {
+  Widget _buildOrderSummaryAndSubmitButton(BuildContext context) {
     return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Order Summary',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      color: const Color.fromARGB(255, 240, 240, 240),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Order Summary',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                SizedBox(height: 16),
+                _buildSummaryRow('Subtotal', '2500 AED'),
+                _buildSummaryRow('Shipping Fee', '50 AED'),
+                _buildSummaryRow('Total', '2550 AED', isTotal: true),
+              ],
             ),
-            SizedBox(height: 16),
-            _buildSummaryRow('Subtotal', '2500 AED'),
-            _buildSummaryRow('Shipping Fee', '50 AED'),
-            _buildSummaryRow('Total', '2550 AED', isTotal: true),
-          ],
-        ),
+          ),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CheckoutDoneScreen()),
+                );
+              },
+              child: Text('Submit Order'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -144,27 +168,6 @@ class CheckoutReviewScreen extends StatelessWidget {
               style: TextStyle(
                   fontWeight: isTotal ? FontWeight.bold : FontWeight.normal)),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSubmitButton(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CheckoutDoneScreen()),
-          );
-        },
-        child: Text('Submit Order'),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 16),
-        ),
       ),
     );
   }

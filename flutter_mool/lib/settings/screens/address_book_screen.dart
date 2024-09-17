@@ -28,6 +28,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 231, 231, 231),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 46, 51),
         title: Text(
@@ -156,7 +157,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
       label: Text('Add new address'),
       style: OutlinedButton.styleFrom(
         foregroundColor: Colors.black,
-        side: BorderSide(color: Colors.grey),
+        side: BorderSide(color: Colors.transparent),
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       ),
     );
